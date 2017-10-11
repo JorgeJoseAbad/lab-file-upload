@@ -1,14 +1,21 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
-const path = require('path');
-const multer = require('multer');
+const path       = require('path');
+const multer     = require('multer');
 const User       = require('../models/user');
-const bcrypt             = require('bcrypt');
+const bcrypt     = require('bcrypt');
 
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+const myUploader = multer({
+  dest: path.join(__dirname, '../public/uploads')
+});
+
+
+
 router.get('/login', ensureLoggedOut(), (req, res) => {
+    console.log("en router.get login");
     res.render('authentication/login', { message: req.flash('error')});
 });
 
@@ -19,7 +26,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-  console.log("intentamos ir");
+  console.log("intentamos ir a signup");
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
@@ -30,14 +37,11 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 }));
 */
 
-const myUploader = multer({
-  dest: path.join(__dirname, '../public/uploads')
-});
 
 router.post('/signup', ensureLoggedOut(), myUploader.single('file'), (req, res, next) => {
 
-    const username = req.body.username,
-        password = req.body.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
     if (!password && !username) {
         res.render('authentication/signup', {
@@ -88,12 +92,15 @@ router.post('/signup', ensureLoggedOut(), myUploader.single('file'), (req, res, 
 
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+    console.log("en route.get /profile req.user es:");
+    console.log(req.user);
     res.render('authentication/profile', {
         user : req.user
     });
 });
 
-router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
+router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
+  console.log("en post logout");
     req.logout();
     res.redirect('/');
 });

@@ -1,5 +1,8 @@
-<h1>edit your profile</h1>
-<%=user.username %>
+<h1>Wiew your profile</h1>
+<div class="username"><%=user.username %></div>
 
-<%= user.email %>
-<img src="<%=user.profile_pic.pic_path %>" alt="">
+<div class="usermail"><%= user.email %></div>
+<br>
+<img class="avatar" src="<%=user.profile_pic.pic_path %>" alt="">
+<br>
+<b><%=user.profile_pic.pic_name%></b>

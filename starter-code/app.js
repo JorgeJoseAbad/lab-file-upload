@@ -13,15 +13,19 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const index              = require('./routes/index');
+const authRoutes         = require('./routes/authentication');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
 
-app.set('views', path.join(__dirname, 'views'));
+
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
-app.use(expressLayouts);
+app.set('views', path.join(__dirname, 'views'));
+
 
 app.use(session({
   secret: 'tumblrlabdev',
@@ -104,9 +108,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
-
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 
 app.use('/', authRoutes);
 app.use('/', index);

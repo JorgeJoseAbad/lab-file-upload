@@ -1,0 +1,18 @@
+<h1>Wiew Post</h1>
+
+<% posts.forEach((post,i) => { %>
+  <br>
+    <%= post.content %>
+
+  <br>
+     ID Post Creator<%=post.creatorId.username %>
+  <br>
+    <% if (user!=undefined){%>
+     Logged username <%=user.username%>
+   <%}%>
+  <br>
+
+  <br>
+
+    <img class="imagepost" src="<%=post.picPath %>" alt="">
+  <% }) %>

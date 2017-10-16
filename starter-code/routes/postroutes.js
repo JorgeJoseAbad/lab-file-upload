@@ -5,6 +5,7 @@ const path       = require('path');
 const multer     = require('multer');
 const User       = require('../models/user');
 const Post       = require('../models/post');
+const fs         = require('fs');
 
 const myUploaderPost = multer({
   dest: path.join(__dirname, '../public/uploads')
@@ -29,7 +30,7 @@ router.get('/',(req,res)=>{
       .populate('creatorId')
       .exec((err, posts) => {
         if (err) return err;
-        console.log(posts); 
+        console.log(posts);
         res.render('post/listpost', {posts,user:req.user});
       });
 
@@ -63,6 +64,44 @@ router.post('/newpost',myUploaderPost.single('file'),(req,res)=>{
   });
 
 });
+
+
+/* to delete file from publics, fs.unlink of node.js*/
+router.post('/:id/delete',function(req,res){
+
+    console.log(req.params.id);
+    const id = req.params.id;
+
+    Post.findByIdAndRemove(id, (err, product) => {
+      console.log(product);
+      console.log(product.picPath);
+      var picToDelete='public'+product.picPath;
+      console.log(picToDelete);
+      if (err){
+        console.log(err);
+        return next(err);
+      } else {
+        console.log("borrado BBDD, vamos a borrar el fichero");
+        fs.unlink(picToDelete, (err) => {
+          try{
+            if (err) throw err;
+            console.log('successfully deleted file: '+picToDelete);
+          }
+          catch (err){
+            console.log(err);
+            console.log("No se encuentra este fichero: "+picToDelete);
+          }
+          finally {
+            console.log("he pasado por el unlink");
+          }
+        });
+      }
+
+      return res.redirect('/');
+    });
+
+});
+
 
 //el objeto de esta ruta es obtener el nombre del creador de un post
 // a trave de su id que esta almacenado en el post.

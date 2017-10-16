@@ -1,8 +1,15 @@
 <h1>Wiew your profile</h1>
-<div class="username"><%=user.username %></div>
+<div class="username">
+  <b>Name: </b><%=user.username %>
+</div>
 
-<div class="usermail"><%= user.email %></div>
+<div class="usermail">
+  <b>Mail: </b><%= user.email %>
+</div>
+<br>
+<b>User avatar: </b>
 <br>
 <img class="avatar" src="<%=user.profile_pic.pic_path %>" alt="">
+
 <br>
 <b><%=user.profile_pic.pic_name%></b>

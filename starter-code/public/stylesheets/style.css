@@ -9,8 +9,16 @@ a {
 
 .avatar{
   width: 100px;
-  height: auto;
+  height: 100px;
+  border-radius: 50px;
 
+}
+
+.post{
+  width: 300px;
+  height: auto;
+  border-top: 2px solid red;
+  margin-bottom: 20px;
 }
 
 .imagepost{

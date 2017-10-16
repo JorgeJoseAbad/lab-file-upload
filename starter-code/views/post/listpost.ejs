@@ -1,18 +1,17 @@
 <h1>Wiew Post</h1>
 
 <% posts.forEach((post,i) => { %>
-  <br>
-    <%= post.content %>
+  <div class="post">
+    number post: <%=i+1%>
+    <br>
+       Post creator: <%=post.creatorId.username %>
+    <br>
+      <img class="imagepost" src="<%=post.picPath %>" alt="">
+      <br>
+        Post content: <%= post.content %>
+        <form action=" /post/<%=post._id%>/delete" method="POST">
+                <button  type="submit">Delete artwork</button>
+        </form>
+  </div>
 
-  <br>
-     ID Post Creator<%=post.creatorId.username %>
-  <br>
-    <% if (user!=undefined){%>
-     Logged username <%=user.username%>
-   <%}%>
-  <br>
-
-  <br>
-
-    <img class="imagepost" src="<%=post.picPath %>" alt="">
-  <% }) %>
+<% }) %>

@@ -72,7 +72,7 @@ router.get('/:id',function(req,res){
     .exec((err, post) => {
       if (err) return err;
       console.log(post);
-      res.render('post/show', {post:post});
+      res.render('post/show', {post:post,user:req.user});
     });
 
 });
@@ -86,7 +86,7 @@ router.get('/:id/edit', function(req,res){
   Post.findById(id, (err, post) => {
     console.log(post);
     if (err) { return next(err); }
-    res.render('post/edit', { post: post });
+    res.render('post/edit', { post: post,user:req.user});
   });
 
 });

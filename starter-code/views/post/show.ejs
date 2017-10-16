@@ -1,4 +1,4 @@
-Show sole post
+<strong>Show Post Details</strong>
 <div class="container">
   <div class="row">
     <div class="col-sm-6 centered-form">
@@ -6,25 +6,26 @@ Show sole post
       <div class="post">
 
         <br>
-           Post creator: <%=post.creatorId.username %>
+           <b>Post creator:</b> <%=post.creatorId.username %>
         <br>
           <img class="imagepost" src="<%=post.picPath %>" alt="">
           <br>
-            Post content: <%= post.content %>
+            <em><b>Post content:</b></em> <%= post.content %>
             <br>
-            Time creation: <%=post.created_at%>
+            <em><b>Time creation:</b></em> <%=post.created_at%>
             <br>
-            Time updated: <%=post.updated_at%>
+            <em><b>Time updated:</b></em> <%=post.updated_at%>
 
+          <!--first, if user exist, then compares-->
+          <%if (user&&user.username===post.creatorId.username){%>
+            <form action=" /post/<%=post._id%>/delete" method="POST">
+                    <button  type="submit">Delete post</button>
+            </form>
 
-
-          <form action=" /post/<%=post._id%>/delete" method="POST">
-                  <button  type="submit">Delete post</button>
-          </form>
-
-          <form action=" /post/<%=post._id%>/edit" method="GET">
-                  <button  type="submit">Edit content post</button>
-          </form>
+            <form action=" /post/<%=post._id%>/edit" method="GET">
+                    <button  type="submit">Edit content post</button>
+            </form>
+          <%}%>
 
           <form action=" /post" method="GET">
                   <button  type="submit">Return list of posts </button>

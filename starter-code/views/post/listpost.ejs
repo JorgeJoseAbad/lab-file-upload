@@ -1,13 +1,13 @@
-<h1>Wiew Post</h1>
+<h3>Wiew Post</h3>
 
 <% posts.forEach((post,i) => { %>
   <div class="post">
-    number post: <%=i+1%>
+    Post number: <%=i+1%>
     <br>
        Post creator: <%=post.creatorId.username %>
     <br>
       <img class="imagepost" src="<%=post.picPath %>" alt="">
-      <br>
+    <br>
         Post content: <%= post.content %>
         <!--<form action=" /post/<%=post._id%>/delete" method="POST">
                 <button  type="submit">Delete artwork</button>

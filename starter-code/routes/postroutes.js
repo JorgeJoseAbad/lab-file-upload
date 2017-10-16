@@ -13,17 +13,9 @@ const myUploaderPost = multer({
 
 console.log("in postRoutes");
 
-/* router get original
+/*Complete list of CRUD routes for post*/
 
-router.get('/',(req,res)=>{
-  Post.find((err, post) => {
-    if (err) return next(err);
-    console.log("in router get / post:");
-    console.log(post);
-
-    res.render('post/listpost', {post,user:req.user});
-  });*/
-
+//route to list all post
   router.get('/',(req,res,next)=>{
     Post
       .find({})
@@ -36,14 +28,17 @@ router.get('/',(req,res)=>{
 
   });
 
-router.get('/newpost',(req,res)=>{
+//route to show new post form
+router.get('/new',(req,res)=>{
   console.log("en post router get");
   console.log(req.user);
   console.log(req.query);
   res.render('post/newpost',{user:req.user});
 });
 
-router.post('/newpost',myUploaderPost.single('file'),(req,res)=>{
+
+//route to save new post with post verb
+router.post('/',myUploaderPost.single('file'),(req,res)=>{
   console.log("en routerpost newpost");
   console.log(req.body);
 
@@ -65,8 +60,56 @@ router.post('/newpost',myUploaderPost.single('file'),(req,res)=>{
 
 });
 
+//route to show one sole post, for details for example, with all
+// information of that post
+router.get('/:id',function(req,res){
+  var id=req.params.id;
+  console.log("route to show one sole post: "+id);
 
-/* to delete file from publics, fs.unlink of node.js*/
+  Post
+    .findById({_id:id})
+    .populate('creatorId')
+    .exec((err, post) => {
+      if (err) return err;
+      console.log(post);
+      res.render('post/show', {post:post});
+    });
+
+});
+
+
+//route to show edit post form (only content)
+router.get('/:id/edit', function(req,res){
+  var id=req.params.id;
+  console.log("in get /:id:  "+id);
+
+  Post.findById(id, (err, post) => {
+    console.log(post);
+    if (err) { return next(err); }
+    res.render('post/edit', { post: post });
+  });
+
+});
+
+
+//route to save edited post with post verb
+router.post('/:id', function(req,res){
+  var id=req.params.id;
+  console.log('in post /:id/edit: '+id);
+
+  const updates = {
+      content: req.body.content,
+  };
+
+
+  Post.findByIdAndUpdate(id, updates, (err, post) => {
+    if (err){ return next(err); }
+    return res.redirect('/');
+  });
+});
+
+
+/* route to delete post and file from publics, fs.unlink of node.js*/
 router.post('/:id/delete',function(req,res){
 
     console.log(req.params.id);
@@ -105,7 +148,8 @@ router.post('/:id/delete',function(req,res){
 
 //el objeto de esta ruta es obtener el nombre del creador de un post
 // a trave de su id que esta almacenado en el post.
-router.get('/:id/creatorname',(req,res)=>{
+// routa a eliminar tras comprobar
+/*router.get('/:id/creatorname',(req,res)=>{
   var id=req.params.id;
   console.log(id);
   User.findById({_id:id},(err,user)=>{
@@ -113,6 +157,6 @@ router.get('/:id/creatorname',(req,res)=>{
     if (err) next(err);
     return user;
   });
-});
+});*/
 
 module.exports = router;

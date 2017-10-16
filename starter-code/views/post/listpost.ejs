@@ -9,9 +9,16 @@
       <img class="imagepost" src="<%=post.picPath %>" alt="">
       <br>
         Post content: <%= post.content %>
-        <form action=" /post/<%=post._id%>/delete" method="POST">
+        <!--<form action=" /post/<%=post._id%>/delete" method="POST">
                 <button  type="submit">Delete artwork</button>
         </form>
+        <form action=" /post/<%=post._id%>/edit" method="GET">
+                <button  type="submit">Edit a post</button>
+        </form>-->
+        <form action=" /post/<%=post._id%>" method="GET">
+                <button  type="submit">Show post details</button>
+        </form>
+
   </div>
 
 <% }) %>

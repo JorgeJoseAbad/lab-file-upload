@@ -1,0 +1,37 @@
+Show sole post
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+
+      <div class="post">
+
+        <br>
+           Post creator: <%=post.creatorId.username %>
+        <br>
+          <img class="imagepost" src="<%=post.picPath %>" alt="">
+          <br>
+            Post content: <%= post.content %>
+            <br>
+            Time creation: <%=post.created_at%>
+            <br>
+            Time updated: <%=post.updated_at%>
+
+
+
+          <form action=" /post/<%=post._id%>/delete" method="POST">
+                  <button  type="submit">Delete post</button>
+          </form>
+
+          <form action=" /post/<%=post._id%>/edit" method="GET">
+                  <button  type="submit">Edit content post</button>
+          </form>
+
+          <form action=" /post" method="GET">
+                  <button  type="submit">Return list of posts </button>
+          </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

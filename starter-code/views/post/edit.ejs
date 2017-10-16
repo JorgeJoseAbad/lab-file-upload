@@ -1,0 +1,6 @@
+<b>Edit post, you can only modify content text</b>
+<form action="/post/<%= post._id %>" method="POST">
+  <label for="name">Content</label>
+  <input type="text" id="content" name="content" value="<%= post.content %>">
+  <button type="submit">Update Post</button>
+</form>

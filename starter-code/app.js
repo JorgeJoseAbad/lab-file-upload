@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
 
-app.locals.title="Trumblr reply";
+app.locals.title="Trumblr reply: IronTrumblr";
 app.locals.subtitle="An CRUD exercise with file uploads";
 //app.locals.editTitle="Edit image data";
 

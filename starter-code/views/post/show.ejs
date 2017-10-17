@@ -16,6 +16,22 @@
             <br>
             <em><b>Time updated:</b></em> <%=post.updated_at%>
 
+          <!-- Show coments -->
+
+
+          <hr>
+          <h4>Coments</h4>
+          <ul>
+            <% post.coments.forEach((coment,i) => { %>
+              <li>
+                <i>Coment number: <%=i+1%></i>
+                <p><%= coment.content %></p>
+                <strong>Coment Author: <%= coment.authorId.username %></strong>
+              </li>
+            <%  }); %>
+          </ul>
+
+
           <!--first, if user exist, then compares-->
           <%if (user&&user.username===post.creatorId.username){%>
             <form action=" /post/<%=post._id%>/delete" method="POST">

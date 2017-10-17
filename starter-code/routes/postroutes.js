@@ -69,6 +69,7 @@ router.get('/:id',function(req,res){
   Post
     .findById({_id:id})
     .populate('creatorId')
+    .populate('coments.authorId')
     .exec((err, post) => {
       if (err) return err;
       console.log(post);

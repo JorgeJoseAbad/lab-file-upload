@@ -6,12 +6,12 @@ const postSchema = Schema({
   content: String,// Text belonging to the post
   creatorId: {
               type: Schema.Types.ObjectId,
-              ref: 'User', //ref user is mandatory
+              ref: 'User', //ref user is mandatory to know reference
               required: true
             },//- ObjectId of the post's creator
-  picPath: String,// - Where the picture is stored
-  picName: String,// - The picture's name
-  coments    : [Coment.schema] // New
+  picPath: {type:String,required:true},// - Where the picture is stored
+  picName: {type:String,required:true},// - The picture's name
+  coments: [Coment.schema] // New
   }, {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 });

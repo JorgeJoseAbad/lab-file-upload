@@ -13,9 +13,11 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+
 const index              = require('./routes/index');
 const authRoutes         = require('./routes/authentication');
 const postRoutes         = require('./routes/postroutes');
+const comentRoutes       = require('./routes/comentroutes');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -115,6 +117,7 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/post',postRoutes);
+app.use('/coment',comentRoutes);
 app.use('/', authRoutes);
 app.use('/', index);
 

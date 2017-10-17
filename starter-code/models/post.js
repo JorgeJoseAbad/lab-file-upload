@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Coment   = require('./coment'); // New
 const Schema   = mongoose.Schema;
 
 const postSchema = Schema({
@@ -10,6 +11,7 @@ const postSchema = Schema({
             },//- ObjectId of the post's creator
   picPath: String,// - Where the picture is stored
   picName: String,// - The picture's name
+  coments    : [Coment.schema] // New
   }, {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 });

@@ -1,0 +1,16 @@
+<!-- coment new -->
+<%=user._id%>
+<form action="/coment/<%= post._id %>/coments" method="POST">
+  <div class="form-group">
+    <label for="authorId">authorId hidden in form</label>
+    <input type="hidden" name="authorId" value="<%=user._id%>" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea name="content" rows="3" cols="80"></textarea>
+  </div>
+
+  <button type="submit">Submit Review</button>
+
+</form>

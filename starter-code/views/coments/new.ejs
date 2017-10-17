@@ -1,8 +1,8 @@
 <!-- coment new -->
-<%=user._id%>
+
 <form action="/coment/<%= post._id %>/coments" method="POST">
   <div class="form-group">
-    <label for="authorId">authorId hidden in form</label>
+    <label for="authorId">Write a coment, <%=user.username%></label>
     <input type="hidden" name="authorId" value="<%=user._id%>" class="form-control">
   </div>
 

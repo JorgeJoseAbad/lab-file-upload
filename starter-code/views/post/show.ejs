@@ -17,8 +17,6 @@
             <em><b>Time updated:</b></em> <%=post.updated_at%>
 
           <!-- Show coments -->
-
-
           <hr>
           <h4>Coments</h4>
           <ul>
@@ -32,7 +30,7 @@
           </ul>
 
 
-          <!--first, if user exist, then compares-->
+          <!-- buttons options: first, if user exist, then compares-->
           <%if (user&&user.username===post.creatorId.username){%>
             <form action=" /post/<%=post._id%>/delete" method="POST">
                     <button  type="submit">Delete post</button>
@@ -43,13 +41,17 @@
             </form>
           <%}%>
 
+          <%if (user){%>
+            <form action=" /coment/<%=post._id%>/coment/new" method="GET">
+                    <button  type="submit">Coment this post </button>
+            </form>
+          <%}%>
+
           <form action=" /post" method="GET">
                   <button  type="submit">Return list of posts </button>
           </form>
 
-          <form action=" /coment/<%=post._id%>/coment/new" method="GET">
-                  <button  type="submit">Coment this post </button>
-          </form>
+
 
       </div>
 

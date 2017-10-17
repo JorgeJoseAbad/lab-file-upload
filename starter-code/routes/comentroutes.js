@@ -13,6 +13,7 @@ const fs         = require('fs');
 
 console.log("in post-comments");
 
+//get route no show form for new coment
 router.get('/:postId/coment/new', (req, res, next) => {
   console.log("in get /:postId/coments/new");
   let postId = req.params.postId;
@@ -23,6 +24,7 @@ router.get('/:postId/coment/new', (req, res, next) => {
   });
 });
 
+//post route to save new coment in post
 router.post('/:postId/coments', (req, res, next) => {
   let postId = req.params.postId;
 
@@ -44,27 +46,6 @@ router.post('/:postId/coments', (req, res, next) => {
     });
   });
 });
-
-/*from here, routes about reviews*/
-
-/* EXAMPLE
-Product.findOne( { name: "Yoga Mat"}, (err, mat) => {
-  if (err) { throw err }
-  // Create a new review object
-  const newReview = new Review(
-    {
-      author: "ironhacker@gmail.com",
-      content: "The description lied, the mat gets slippery very quickly. :("
-    }
-  );
-  // Add the review to the product
-  mat.reviews.push(newReview);
-  // Save the **parent model**, Product
-  mat.save( (err) => {
-    if (err) { throw err }
-    console.log("Review Added!");
-  });
-});*/
 
 
 

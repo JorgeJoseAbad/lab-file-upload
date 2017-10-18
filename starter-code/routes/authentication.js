@@ -105,6 +105,17 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     res.redirect('/');
 });
 
+router.get('/listusers', (req,res)=>{
+  console.log("En listusers");
+  User.find({}, (err, users) => {
+    console.log(users);
+    if (err) { return next(err); }
+    res.render('authentication/listusers',{ users:users});
+  });
+
+});
+
+
 
 
 module.exports = router;

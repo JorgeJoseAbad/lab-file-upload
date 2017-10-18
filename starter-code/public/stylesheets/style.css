@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #f5dcb5
+  background-color: #f1ede7
 }
 
 a {
@@ -16,7 +16,7 @@ a {
 }
 
 .info{
-  background-color: navy;
+  background-color: #f1d4a8;
 }
 
 .post{

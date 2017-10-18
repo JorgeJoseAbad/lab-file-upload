@@ -12,10 +12,10 @@
   <body>
     <h1><%=title%></h1>
     <h2><%=subtitle%></h2>
-    <pre>Express-node.js, mongoDB-mongoose, passport... An user can sign-up with image upload, login.
+    <h5 class="info">Express-node.js, mongoDB-mongoose, passport... An user can sign-up with image upload, login.
       User can create a post with image upload, or comment it.
       If the post is own user can modify or delete it. with image delete
-    </pre>
+    </h5>
     <br>
     <%if(typeof user!='undefined')
       {%>User logged: <b><%=user.username%></b>

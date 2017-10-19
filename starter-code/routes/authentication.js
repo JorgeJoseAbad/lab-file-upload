@@ -15,7 +15,7 @@ const myUploader = multer({
 
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    console.log("en router.get login");
+
     res.render('authentication/login', { message: req.flash('error')});
 });
 
@@ -26,7 +26,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-  console.log("intentamos ir a signup");
+
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
@@ -92,23 +92,23 @@ router.post('/signup', ensureLoggedOut(), myUploader.single('file'), (req, res, 
 
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    console.log("en route.get /profile req.user es:");
-    console.log(req.user);
+
+    
     res.render('authentication/profile', {
         user : req.user
     });
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
-  console.log("en post logout");
+
     req.logout();
     res.redirect('/');
 });
 
 router.get('/listusers', (req,res)=>{
-  console.log("En listusers");
+
   User.find({}, (err, users) => {
-    console.log(users);
+
     if (err) { return next(err); }
     res.render('authentication/listusers',{ users:users});
   });

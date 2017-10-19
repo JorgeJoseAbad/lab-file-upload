@@ -11,11 +11,11 @@ const fs         = require('fs');
 
 
 
-console.log("in post-comments");
+
 
 //get route no show form for new coment
 router.get('/:postId/coment/new', (req, res, next) => {
-  console.log("in get /:postId/coments/new");
+
   let postId = req.params.postId;
 
   Post.findById(postId, (err, post) => {
@@ -33,11 +33,11 @@ router.post('/:postId/coments', (req, res, next) => {
       content: req.body.content,
       authorId: req.body.authorId
     });
-    console.log(newComent);
+
 
     post.coments.push(newComent);
 
-    console.log(post);
+    
 
     post.save((err) => {
       if (err) {console.log("error en save");

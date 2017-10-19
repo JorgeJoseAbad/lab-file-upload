@@ -12,11 +12,12 @@
   <body>
     <h1><%=title%></h1>
     <h2><%=subtitle%></h2>
-    <h5 class="info">Express-node.js, mongoDB-mongoose, passport...
-       An user can sign-up and upload his avatar image, and made login and logout.
-       A no logged user can see all post and details of a post, and list existing users. Logged user can create a post with image upload, or comment it.
-       If the post is own user can modify or delete it; with image delete.
-    </h5>
+    <h4 class="info">Express-node.js, mongoDB-mongoose, passport...
+       An user can signup and upload his avatar image, and made login and logout.
+       A no logged user can also see all post and details of a post, and list existing users. Logged user can create a post with image upload, or comment it.
+       If the post is own user can modify or delete it; with the elimination of image files.
+    </h4>
+    <h5 class="firma">By: Jorge Abad</h5>
     <br>
     <%if(typeof user!='undefined')
       {%>User logged: <b><%=user.username%></b>
@@ -39,7 +40,6 @@
             <li><a href="/post">List all post</a></li>
             <li><a href="/post/new">Add New post</a></li>
         <%}%>
-
 
       </ul>
 

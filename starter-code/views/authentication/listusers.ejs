@@ -1,13 +1,13 @@
 <h3>Wiew Users</h3>
 <h4>List of registered users:</h4>
 <% users.forEach((user,i) => { %>
-  <div class="post">
-    User number: <%=i+1%>
-    <br>
-       User name: <strong><%=user.username %></strong>
-    <br>
-      <img class="avatar" src="<%=user.profile_pic.pic_path %>" alt="">
+    <div class="post">
+      User number: <%=i+1%>
+      <br>
+         User name: <strong><%=user.username %></strong>
+      <br>
+        <img class="avatar" src="<%=user.profile_pic.pic_path %>" alt="">
 
-  </div>
+    </div>
 
 <% }) %>

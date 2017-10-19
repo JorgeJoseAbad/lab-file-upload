@@ -8,6 +8,12 @@ a {
   color: #00B7FF;
 }
 
+.firma{
+  text-align: right;
+  font-family: fantasy;
+  color: blue;
+}
+
 .avatar{
   width: 100px;
   height: 100px;

@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URI);
 const app = express();
 
 app.locals.title="Tumblr reply: IronTumblr";
-app.locals.subtitle="An CRUD exercise with file uploads and complex model";
+app.locals.subtitle="An IRONHACK bootcamp CRUD exercise with file uploads and complex model";
 //app.locals.editTitle="Edit image data";
 
 

@@ -20,7 +20,10 @@ const authRoutes         = require('./routes/authentication');
 const postRoutes         = require('./routes/postroutes');
 const comentRoutes       = require('./routes/comentroutes');
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const app = express();
 
@@ -42,16 +45,6 @@ app.use(session({
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
 
-passport.serializeUser((user, cb) => {
-  cb(null, user.id);
-});
-
-passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
 
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
@@ -70,6 +63,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
+//no used
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
@@ -107,9 +101,21 @@ passport.use('local-signup', new LocalStrategy(
     });
 }));
 
-app.use(flash());
+passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

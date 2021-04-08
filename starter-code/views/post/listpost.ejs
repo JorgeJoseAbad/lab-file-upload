@@ -1,24 +1,25 @@
-<h3>Wiew Post</h3>
+<div class="container">
+  <div class="row">
 
-<% posts.forEach((post,i) => { %>
-  <div class="post">
-    Post number: <%=i+1%>
-    <br>
-       Post creator: <%=post.creatorId.username %>
-    <br>
-      <img class="imagepost" src="<%=post.picPath %>" alt="">
-    <br>
-        Post content: <%= post.content %>
-        <!--<form action=" /post/<%=post._id%>/delete" method="POST">
-                <button  type="submit">Delete artwork</button>
-        </form>
-        <form action=" /post/<%=post._id%>/edit" method="GET">
-                <button  type="submit">Edit a post</button>
-        </form>-->
+    <h3>Wiew Post</h3>
+    <% posts.forEach((post,i) => { %>
+    <div class="col-sm-4">
+      <div class="post">
+        Post number:
+        <%=i+1%>
+        <br>
+        Post creator:
+        <%=post.creatorId.username %>
+        <br>
+        <img class="imagepost" src="<%=post.picPath %>" alt="">
+        <br>
+        Post content:
+        <%= post.content %>
         <form action=" /post/<%=post._id%>" method="GET">
-                <button  type="submit">Show post details</button>
+          <button type="submit">Show post details</button>
         </form>
-
+      </div>
+    </div>
+    <% }) %>
   </div>
-
-<% }) %>
+</div>

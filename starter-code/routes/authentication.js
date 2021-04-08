@@ -37,7 +37,6 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 }));
 */
 
-
 router.post('/signup', ensureLoggedOut(), myUploader.single('file'), (req, res, next) => {
 
     const username = req.body.username;
@@ -93,7 +92,7 @@ router.post('/signup', ensureLoggedOut(), myUploader.single('file'), (req, res, 
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
 
-    
+
     res.render('authentication/profile', {
         user : req.user
     });

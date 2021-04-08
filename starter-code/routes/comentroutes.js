@@ -9,10 +9,6 @@ const Coment     = require('../models/coment');
 
 const fs         = require('fs');
 
-
-
-
-
 //get route no show form for new coment
 router.get('/:postId/coment/new', (req, res, next) => {
 
@@ -34,10 +30,7 @@ router.post('/:postId/coments', (req, res, next) => {
       authorId: req.body.authorId
     });
 
-
     post.coments.push(newComent);
-
-    
 
     post.save((err) => {
       if (err) {console.log("error en save");

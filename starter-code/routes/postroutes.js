@@ -12,7 +12,6 @@ const myUploaderPost = multer({
 });
 
 
-
 /*Complete list of CRUD routes for post*/
 
 //route to list all post
@@ -64,7 +63,6 @@ router.post('/',myUploaderPost.single('file'),(req,res)=>{
 router.get('/:id',function(req,res){
   var id=req.params.id;
 
-
   Post
     .findById({_id:id})
     .populate('creatorId')
@@ -76,7 +74,6 @@ router.get('/:id',function(req,res){
     });
 
 });
-
 
 //route to show edit post form (only content)
 router.get('/:id/edit', function(req,res){
@@ -96,11 +93,9 @@ router.get('/:id/edit', function(req,res){
 router.post('/:id', function(req,res){
   var id=req.params.id;
 
-
   const updates = {
       content: req.body.content,
   };
-
 
   Post.findByIdAndUpdate(id, updates, (err, post) => {
     if (err){ return next(err); }
@@ -128,11 +123,9 @@ router.post('/:id/delete',function(req,res){
         fs.unlink(picToDelete, (err) => {
           try{
             if (err) throw err;
-
           }
           catch (err){
             console.log(err);
-
           }
           finally {
             console.log("unlink made");
